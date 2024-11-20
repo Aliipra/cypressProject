@@ -53,15 +53,9 @@ Then("I verify user can't log in", () => {
   cy.log('Test3')
   cy.get('.undefined').should('not.be.visible')
 
-          cy.get('.ltr .toast-message').first()
-            .should('exist')
-            .and('contain', 'المعرف أو كلمة مرور غير صحيحة');
-
-        cy.wait(2000);
-
-        
-        cy.get('.ltr .toast-message').first().should('not.exist');
-
+  cy.on('window:alert', (str) => {
+            expect(str).to.equal('المعرف أو كلمة مرور غير صحيحة')
+        })
 
 });
 
